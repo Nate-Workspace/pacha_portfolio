@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
-    "@vercel/analytics": "^1.5.0",
-    "analytics": "github:vercel/analytics",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.545.0",
