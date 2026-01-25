@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MessageSquare, Send } from "lucide-react";
 import { useState } from "react";
+import { sendContactEmail } from "@/app/actions/send-email";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,10 +18,47 @@ export function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setIsLoading(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const result = await sendContactEmail(formData);
+
+      if (result.success) {
+        setSubmitStatus({
+          type: "success",
+          message:
+            "Message sent successfully! I'll get back to you soon.",
+        });
+        // Clear form
+        setFormData({
+          name: "",
+          email: "",
+          project: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.message,
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "An error occurred. Please try again later.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -82,6 +120,17 @@ export function ContactSection() {
 
             <Card className="lg:col-span-2 p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {submitStatus.type && (
+                  <div
+                    className={`p-4 rounded-lg ${
+                      submitStatus.type === "success"
+                        ? "bg-green-50 text-green-900 border border-green-200"
+                        : "bg-red-50 text-red-900 border border-red-200"
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -145,8 +194,13 @@ export function ContactSection() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full group">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full group"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Sending..." : "Send Message"}
                   <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </form>
