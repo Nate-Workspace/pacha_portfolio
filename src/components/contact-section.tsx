@@ -78,7 +78,6 @@ export function ContactSection() {
     }
   };
 
-  // Initialize EmailJS client with public key on mount (optional but helpful)
   useEffect(() => {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     if (publicKey) {
