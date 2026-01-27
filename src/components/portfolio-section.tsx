@@ -63,6 +63,24 @@ export function PortfolioSection() {
       thumbnail: "/event-videography-editing.jpg",
       duration: "5:30",
     },
+    {
+      title: "Portrait Photography - Location Shoot",
+      category: "Photography",
+      description:
+        "Natural light portrait series with premium retouching and color correction.",
+      tags: ["Photoshop", "Retouching", "Location"],
+      thumbnail: "/portrait-location.jpg",
+      duration: "—",
+    },
+    {
+      title: "Product Photos - Catalog",
+      category: "Photography",
+      description:
+        "Consistent product imagery, background removal, and color matching for catalogs.",
+      tags: ["Studio", "Color Correction", "Clipping Path"],
+      thumbnail: "/product-catalog.jpg",
+      duration: "—",
+    },
   ];
 
   return (

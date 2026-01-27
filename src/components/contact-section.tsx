@@ -90,6 +90,15 @@ export function ContactSection() {
     }
   }, []);
 
+  // Auto-hide submit status after 10 seconds
+  useEffect(() => {
+    if (!submitStatus.type) return;
+    const timer = setTimeout(() => {
+      setSubmitStatus({ type: null, message: "" });
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [submitStatus.type]);
+
   return (
     <section id="contact" className="py-12 sm:py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -151,10 +160,12 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {submitStatus.type && (
                   <div
-                    className={`p-4 rounded-lg ${
+                    role="status"
+                    aria-live={submitStatus.type === "success" ? "polite" : "assertive"}
+                    className={`p-4 rounded-lg border ${
                       submitStatus.type === "success"
-                        ? "bg-green-50 text-green-900 border border-green-200"
-                        : "bg-red-50 text-red-900 border border-red-200"
+                        ? "bg-green-50 text-green-900 border-green-200 dark:bg-green-900/20 dark:text-green-100 dark:border-green-800"
+                        : "bg-red-50 text-red-900 border-red-200 dark:bg-red-900/20 dark:text-red-100 dark:border-red-800"
                     }`}
                   >
                     {submitStatus.message}

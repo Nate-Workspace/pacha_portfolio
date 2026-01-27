@@ -6,16 +6,16 @@ export function SkillsSection() {
     {
       category: "Primary Software",
       level: "Expert",
-      tools: ["DaVinci Resolve"],
+      tools: ["DaVinci Resolve", "Adobe Photoshop"],
       description:
-        "Professional color grading, advanced editing, and Fusion VFX",
+        "Professional color grading, advanced editing, and photo retouching",
     },
     {
       category: "Advanced Tools",
       level: "Proficient",
-      tools: ["Adobe Premiere Pro", "CapCut Pro"],
+      tools: ["Adobe Premiere Pro", "CapCut Pro", "Lightroom"],
       description:
-        "Multi-platform editing, quick turnarounds, and social media optimization",
+        "Multi-platform editing, quick turnarounds, photo workflows, and social media optimization",
     },
     {
       category: "Motion Graphics",
@@ -28,6 +28,7 @@ export function SkillsSection() {
 
   const specializations = [
     "Color Grading",
+    "Photo Retouching",
     "Video Compositing",
     "Storytelling",
     "Transitions & Effects",

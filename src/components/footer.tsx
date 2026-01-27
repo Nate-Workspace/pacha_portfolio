@@ -7,11 +7,11 @@ export function Footer() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Video Editor</h3>
+              <h3 className="text-xl font-bold mb-4">Video & Photo Editor</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Professional video editing services specializing in DaVinci
-                Resolve, creating compelling visual stories for brands and
-                creators.
+                Professional video and photo editing services specializing in
+                DaVinci Resolve and advanced photo retouching—creating
+                compelling visual stories and imagery for brands and creators.
               </p>
             </div>
 

@@ -7,25 +7,25 @@ export function ProcessSection() {
       icon: FileVideo,
       title: "Discovery & Planning",
       description:
-        "Understanding your vision, target audience, and project goals. We discuss style, tone, and deliverables to ensure alignment.",
+        "Understanding your vision, target audience, and project goals. We discuss style, tone, imagery, and deliverables to ensure alignment.",
     },
     {
       icon: Palette,
       title: "Editing & Assembly",
       description:
-        "Crafting the narrative structure, selecting the best takes, and building the initial cut with attention to pacing and flow.",
+        "Crafting the narrative or photo sequence, selecting the best takes or frames, and building the initial edit with attention to pacing, composition, and flow.",
     },
     {
       icon: Sparkles,
       title: "Enhancement & Polish",
       description:
-        "Adding color grading, motion graphics, sound design, and visual effects to elevate the production value.",
+        "Adding color grading, retouching, motion graphics, sound design, and visual effects to elevate the final production or image.",
     },
     {
       icon: Rocket,
       title: "Review & Delivery",
       description:
-        "Collaborative revision process followed by final export in your preferred format, optimized for your distribution platform.",
+        "Collaborative revision process followed by final export or deliverables in your preferred format, optimized for web, print, or broadcast.",
     },
   ];
 

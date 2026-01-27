@@ -10,19 +10,20 @@ export function AboutSection() {
             <div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-balance">
                 Bringing Ideas to Life Through{" "}
-                <span className="text-gradient">Motion</span>
+                <span className="text-gradient">Motion & Imagery</span>
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  With over 5 years of experience in video editing, I've had the
-                  privilege of working with brands, content creators, and
-                  agencies to create visually stunning content that resonates
-                  with audiences.
+                  With over 5 years of experience in video and photo editing,
+                  I've had the privilege of working with brands, content
+                  creators, and agencies to create visually stunning content
+                  and imagery that resonates with audiences.
                 </p>
                 <p>
-                  My expertise lies in color grading, motion graphics, and
-                  storytelling through editing. I believe every frame matters,
-                  and I'm passionate about crafting videos that not only look
+                  My expertise lies in color grading, motion graphics,
+                  retouching, and storytelling through both video and photo
+                  editing. I believe every frame and image matters, and I'm
+                  passionate about crafting visuals that not only look
                   beautiful but also communicate powerful messages.
                 </p>
                 <p>

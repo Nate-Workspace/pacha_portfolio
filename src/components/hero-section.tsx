@@ -33,9 +33,9 @@ export function HeroSection() {
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Professional video editor specializing in DaVinci Resolve,
-            transforming raw footage into compelling narratives that captivate
-            audiences and elevate brands.
+            Professional video and photo editor specializing in DaVinci Resolve
+            and advanced photo retouching—transforming footage and imagery
+            into compelling stories that captivate audiences and elevate brands.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
