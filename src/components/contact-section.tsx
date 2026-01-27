@@ -7,8 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MessageSquare, Send } from "lucide-react";
-import { useState } from "react";
-import { sendContactEmail } from "@/app/actions/send-email";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -30,26 +30,43 @@ export function ContactSection() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const result = await sendContactEmail(formData);
+      // Basic client-side validation
+      if (!formData.name || !formData.email || !formData.project || !formData.message) {
+        setSubmitStatus({ type: "error", message: "Please fill in all fields." });
+        setIsLoading(false);
+        return;
+      }
 
-      if (result.success) {
-        setSubmitStatus({
-          type: "success",
-          message:
-            "Message sent successfully! I'll get back to you soon.",
-        });
-        // Clear form
-        setFormData({
-          name: "",
-          email: "",
-          project: "",
-          message: "",
-        });
-      } else {
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        type: formData.project,
+      };
+
+      // Env vars for EmailJS must be exposed to the client using NEXT_PUBLIC_ prefix
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
         setSubmitStatus({
           type: "error",
-          message: result.message,
+          message:
+            "Email service not configured. Set NEXT_PUBLIC_EMAILJS_* env variables.",
         });
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        console.log("EmailJS response:", response);
+        setSubmitStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", project: "", message: "" });
+      } catch (err) {
+        console.error("EmailJS error:", err);
+        const errMsg = (err as any)?.text || (err as any)?.message || "Failed to send message.";
+        setSubmitStatus({ type: "error", message: `Send failed: ${errMsg}` });
       }
     } catch (error) {
       setSubmitStatus({
@@ -60,6 +77,19 @@ export function ContactSection() {
       setIsLoading(false);
     }
   };
+
+  // Initialize EmailJS client with public key on mount (optional but helpful)
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      try {
+        emailjs.init(publicKey);
+      } catch (e) {
+        // ignore initialization errors here; send will still accept publicKey
+        console.warn("EmailJS init failed:", e);
+      }
+    }
+  }, []);
 
   return (
     <section id="contact" className="py-12 sm:py-16 bg-background">
