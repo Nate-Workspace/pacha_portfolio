@@ -10,76 +10,58 @@ export function PortfolioSection() {
 
   const projects = [
     {
-      title: "Brand Commercial - Tech Startup",
-      category: "Commercial",
+      title: "Client Advertisement",
+      category: "video",
       description:
-        "High-energy product launch video with dynamic transitions and color grading",
+        "High-quality advertisement video with dynamic transitions and color grading",
       tags: ["DaVinci Resolve", "Color Grading", "Motion Graphics"],
-      thumbnail: "/modern-tech-commercial-video-editing.jpg",
-      duration: "1:30",
+      thumbnail: "/advertisement.png",
+      link: "https://drive.google.com/drive/folders/1f82mErsHPtwhkBEA7VQQwrHz2pcMA1fA?usp=sharing",
     },
     {
-      title: "Music Video - Indie Artist",
-      category: "Music Video",
+      title: "Sports - Basketball edits",
+      category: "video",
       description:
         "Cinematic storytelling with creative effects and seamless beat synchronization",
       tags: ["Premiere Pro", "After Effects", "VFX"],
-      thumbnail: "/cinematic-music-video-production.jpg",
-      duration: "3:45",
+      thumbnail: "/sports.jpeg",
+      link: "https://drive.google.com/drive/folders/1iPhSysmrpBmK3PoMm39EWu63jAN1zAcS?usp=sharing",
     },
     {
-      title: "Documentary Short",
-      category: "Documentary",
+      title: "Gym social media videos",
+      category: "video",
       description:
-        "Emotional narrative with interview cuts and atmospheric B-roll sequences",
+        "Transitional, beat synchronized promo videos for social media marketing",
       tags: ["DaVinci Resolve", "Sound Design", "Storytelling"],
-      thumbnail: "/documentary-film-editing.jpg",
-      duration: "12:20",
+      thumbnail: "/gym.png",
+      link: "https://drive.google.com/drive/folders/1BFLqSergMIutKpDUGlRuSlC-7pKWwlA_?usp=sharing",
     },
     {
-      title: "Social Media Campaign",
-      category: "Social Media",
+      title: "Promotional Videos",
+      category: "video",
       description:
         "Fast-paced vertical content optimized for Instagram and TikTok engagement",
       tags: ["CapCut Pro", "Quick Edits", "Trending"],
-      thumbnail: "/social-media-video.png",
-      duration: "0:45",
+      thumbnail: "/promotional.jpg",
+      link: "https://drive.google.com/drive/folders/1xNY1vHDUdQE9ya9kdUrY1b9y-AbnpnhR?usp=sharing",
     },
     {
-      title: "Corporate Training Video",
-      category: "Corporate",
+      title: "Wedding and graduation photos",
+      category: "photo",
       description:
-        "Professional training content with graphics, captions, and clear messaging",
+        "High-end professional photography for weddings and graduations",
       tags: ["Premiere Pro", "Graphics", "Captions"],
-      thumbnail: "/corporate-training-video.jpg",
-      duration: "8:15",
+      thumbnail: "/wedding.png",
+      link: "https://drive.google.com/drive/folders/1fNHRzaaZBQpjXMqu5cbzoYoA667xTPCB?usp=sharing",
     },
     {
-      title: "Event Highlight Reel",
-      category: "Event",
+      title: "Street Photography Series",
+      category: "photo",
       description:
-        "Multi-camera edit capturing the energy and emotion of a live conference",
+        "Clean and creative photo captures with professional retouching",
       tags: ["DaVinci Resolve", "Multi-Cam", "Color Matching"],
-      thumbnail: "/event-videography-editing.jpg",
-      duration: "5:30",
-    },
-    {
-      title: "Portrait Photography - Location Shoot",
-      category: "Photography",
-      description:
-        "Natural light portrait series with premium retouching and color correction.",
-      tags: ["Photoshop", "Retouching", "Location"],
-      thumbnail: "/portrait-location.jpg",
-      duration: "—",
-    },
-    {
-      title: "Product Photos - Catalog",
-      category: "Photography",
-      description:
-        "Consistent product imagery, background removal, and color matching for catalogs.",
-      tags: ["Studio", "Color Correction", "Clipping Path"],
-      thumbnail: "/product-catalog.jpg",
-      duration: "—",
+      thumbnail: "/street.png",
+      link: "https://drive.google.com/drive/folders/1mlpp8ucJ07inm9le4toufDGNvKFYsOwQ?usp=sharing",
     },
   ];
 
@@ -98,59 +80,60 @@ export function PortfolioSection() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {projects.map((project, index) => (
-              <Card
+              <a
                 key={index}
-                className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block no-underline"
               >
-                <div className="relative aspect-video overflow-hidden bg-muted">
-                  <img
-                    src={project.thumbnail || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div
-                    className={`absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
-                      hoveredIndex === index ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="p-4 rounded-full bg-primary text-primary-foreground">
-                        <Play className="h-6 w-6" fill="currentColor" />
+                <Card
+                  className="group overflow-hidden hover:shadow-sm transition-all duration-300 cursor-pointer pt-0 h-full"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <div className="relative aspect-video overflow-hidden bg-muted">
+                    <img
+                      src={project.thumbnail || "/placeholder.svg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      className={`absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
+                        hoveredIndex === index ? "opacity-70" : "opacity-0"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <ExternalLink className="h-5 w-5 text-white" />
                       </div>
-                      <ExternalLink className="h-5 w-5 text-white" />
                     </div>
                   </div>
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur-sm text-xs font-medium">
-                    {project.duration}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge variant="secondary" className="text-xs">
-                      {project.category}
-                    </Badge>
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge
-                        key={tagIndex}
-                        variant="outline"
-                        className="text-xs"
-                      >
-                        {tag}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <Badge variant="secondary" className="text-xs">
+                        {project.category}
                       </Badge>
-                    ))}
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <Badge
+                          key={tagIndex}
+                          variant="outline"
+                          className="text-xs"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </a>
             ))}
           </div>
         </div>
